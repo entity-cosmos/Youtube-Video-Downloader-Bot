@@ -28,7 +28,13 @@ class YoutubeDownloaderBot:
         return list(self.downloaded_videos.keys())
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    text = "Welcome To Cosmos YT Videos Downloader. \n You know the commands right XD"
+    text = (
+        "Welcome To Cosmos YT Videos Downloader.\n"
+        "Here are the commands you can use:\n"
+        "/start - Start the bot\n"
+        "/yt <youtubeVideoUrl> - Download a YouTube video\n"
+        "/list - List downloaded videos"
+    )
     await update.message.reply_text(text)
 
 async def download_video(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
