@@ -33,7 +33,9 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         "Here are the commands you can use:\n"
         "/start - Start the bot\n"
         "/yt <youtubeVideoUrl> - Download a YouTube video\n"
-        "/list - List downloaded videos"
+        "/list - List downloaded videos\n"
+        "Only Small Videos are supported for now.\n"
+        "Made with ❤️ by @Srajan_B_Shetty\n"
     )
     await update.message.reply_text(text)
 
