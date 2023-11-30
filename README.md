@@ -1,2 +1,2 @@
-# Randombot
-This bot shows random images of dogs where you type some commands in telegram
+# Youtube Videos Downloader Bot
+This telegram bot has ability to download the given youtube video. 
