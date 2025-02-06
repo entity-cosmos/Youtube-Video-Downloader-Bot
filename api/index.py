@@ -88,6 +88,8 @@ async def list_downloaded_videos(update: Update, context: ContextTypes.DEFAULT_T
     else:
         text = "No videos downloaded yet."
     await update.message.reply_text(text)
+    
+app = FastAPI()
 
 @app.post("/webhook")
 def webhook(webhook_data: TelegramWebhook):
@@ -107,7 +109,6 @@ def webhook(webhook_data: TelegramWebhook):
     return {"message": "Webhook received successfully"}
 
 
-app = FastAPI()
 
 @app.get("/")
 def index():
