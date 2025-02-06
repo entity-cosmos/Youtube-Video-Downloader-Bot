@@ -93,14 +93,15 @@ app = FastAPI()
 
 @app.post("/webhook")
 def webhook(webhook_data: TelegramWebhook):
-    '''
-    Telegram Webhook Endpoint
-    '''
-    app = Application(token="5385502733:AAEkgNIbNL9sTyguk---nDiS0c-JMX2rybw")
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(CommandHandler("yt", download_video))
-    app.add_handler(CommandHandler("list", list_downloaded_videos))
-    app.run_webhook(webhook_data.dict())
+    global youtube_downloader_bot
+    youtube_downloader_bot = YoutubeDownloaderBot()
+
+    application = Application.builder().token("5385502733:AAEkgNIbNL9sTyguk---nDiS0c-JMX2rybw").build()
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("yt", download_video))
+    application.add_handler(CommandHandler("list", list_downloaded_videos))
+
+    application.run_polling(allowed_updates=Update.ALL_TYPES)
     return {"message": "Webhook received successfully"}
 
 
