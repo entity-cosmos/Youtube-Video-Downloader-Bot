@@ -88,7 +88,7 @@ async def list_downloaded_videos(update: Update, context: ContextTypes.DEFAULT_T
     else:
         text = "No videos downloaded yet."
     await update.message.reply_text(text)
-    
+
 app = FastAPI()
 
 @app.post("/webhook")
@@ -97,13 +97,9 @@ def webhook(webhook_data: TelegramWebhook):
     youtube_downloader_bot = YoutubeDownloaderBot()
 
     application = Application.builder().token("5385502733:AAEkgNIbNL9sTyguk---nDiS0c-JMX2rybw").build()
-
-    if webhook_data.message.text == '/start':
-        application.add_handler(CommandHandler("start", start))
-    elif webhook_data.message.text.startswith('/yt'):
-        application.add_handler(CommandHandler("yt", download_video))
-    elif webhook_data.message.text == '/list':
-        application.add_handler(CommandHandler("list", list_downloaded_videos))
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CommandHandler("yt", download_video))
+    application.add_handler(CommandHandler("list", list_downloaded_videos))
 
     application.run_polling(allowed_updates=Update.ALL_TYPES)
     return {"message": "Webhook received successfully"}
